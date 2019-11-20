@@ -10,15 +10,29 @@ import UIKit
 
 class ZooAnimalTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+
+   @IBOutlet weak var animalNameLabel: UILabel!
+   @IBOutlet weak var animalClass: UILabel!
+    @IBOutlet weak var animalOrigin: UILabel!
+   @IBOutlet weak var animalImage: UIImageView!
+
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configureCell(for zooAnimal: ZooAnimal){
+        animalNameLabel.text = zooAnimal.name
+        animalClass.text = zooAnimal.classification
+       
+        
+        animalOrigin.text = zooAnimal.origin
+        animalImage.image = UIImage(named: "\(zooAnimal.imageNumber)")
+        
     }
-
+    
+    
 }

@@ -35,7 +35,16 @@ class BasicZooAnimalViewController: UIViewController {
     }
     
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let basicVC = segue.destination as? DetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow else {
+                fatalError("couldnt find VC")
+        }
+        
+        let basicList = zooAnimalS[indexPath.row]
+        
+        basicVC.animal = basicList
+    }
     
 }
 
@@ -55,7 +64,8 @@ extension BasicZooAnimalViewController: UITableViewDataSource {
         let animal = zooAnimalS[indexPath.row]
     
         
-        // configure cell to be a subtible cell. 
+         //configure cell to be a subtible cell.
+        
         zooCell.imageView?.image = UIImage(named: animal.imageNumber.description)
         zooCell.textLabel?.text = animal.name
         zooCell.detailTextLabel?.text = animal.origin
